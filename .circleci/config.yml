@@ -124,16 +124,16 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          keys: [backend-test]
+          keys: [backend-scan]
       - run:
-          name: Back-end test
+          name: Back-end scan
           command: |
             cd backend
             npm install
             npm audit fix --audit-level=critical --force
       - save_cache:
           paths: [backend/node_modules]
-          key: backend-test
+          key: backend-scan
 
 #   deploy-infrastructure:
 #     docker:
