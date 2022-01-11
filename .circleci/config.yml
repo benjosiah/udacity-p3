@@ -140,15 +140,16 @@ jobs:
     docker:
       - image: amazon/aws-cli
     steps:
-      - checkout
       - run:          
-          name: SSH or Git CLI client                 
-          command: |            
-              yum install -y openssh-client git
+            name: SSH or Git CLI client                 
+            command: |            
+                yum install -y openssh-client git
       - run:
           name: Intall git 
           command: |
               yum install -y git
+      - checkout
+      
       - run:
           name: Ensure back-end infrastructure exists
           command: | 
