@@ -140,7 +140,12 @@ jobs:
     docker:
       - image: amazon/aws-cli
     steps:
-      - checkout
+      - run: 
+          name: Install tar and gzip
+          command: | 
+            apt update
+            apt install tar
+            apt install gzip
       - run:
           name: Ensure back-end infrastructure exists
           command: | 
