@@ -212,15 +212,10 @@ jobs:
           name: Install dependencies
           command: |
             yum install -y ansible
-            # install python3
             yum install -y python3
-            # install pip3
             apt get update
-            #install nodejs-
             apt install -y nodejs
-            #install npm
             apt install -y npm
-            #install pm2
             npm install -g pm2
 
       - run:
