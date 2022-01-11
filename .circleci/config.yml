@@ -201,26 +201,26 @@ jobs:
             yum install -y tar gzip
       # Add ssh keys with fingerprint
       - add_ssh_keys:
-          fingerprints:[71:ea:ee:43:3a:79:c3:ce:57:55:8d:84:26:c8:6d:eb]
-      # # attach workspace
-      # - attach_workspace:
-      #     at: ~/
-      # # install ansible
-      # - run:
-      #     name: Install dependencies
-      #     command: |
-      #       yum install -y ansible
-      #       yum install -y python
-      #       yum install -y python-pip
-      #       yum install -y nodejs
-      #       yum install -y npm
-      #       yum install -y pm2
-      #       apt-get update
-      # - run:
-      #     name: Configure server
-      #     command: |
-      #       ansible-playbook -i .circleci/files/inventory .circleci/files/configure-server.yml
-      # - destroy-environment   
+          fingerprints: [71:ea:ee:43:3a:79:c3:ce:57:55:8d:84:26:c8:6d:eb]
+      # attach workspace
+      - attach_workspace:
+          at: ~/
+      # install ansible
+      - run:
+          name: Install dependencies
+          command: |
+            yum install -y ansible
+            yum install -y python
+            yum install -y python-pip
+            yum install -y nodejs
+            yum install -y npm
+            yum install -y pm2
+            apt-get update
+      - run:
+          name: Configure server
+          command: |
+            ansible-playbook -i .circleci/files/inventory .circleci/files/configure-server.yml
+      - destroy-environment   
 
   run-migrations:
     docker:
