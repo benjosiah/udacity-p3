@@ -141,6 +141,8 @@ jobs:
       - image: amazon/aws-cli
     steps:
       - checkout
+      - restore_cache:
+          keys: [infrastructure-deploy]
       - run:
           name: Ensure back-end infrastructure exists
           command: | 
@@ -166,6 +168,9 @@ jobs:
           paths:
             - project/.circleci/ansible/inventory.txt
       - destroy-environment
+      - save_cache:
+          paths: [project/.circleci/ansible/inventory.txt]
+          key: infrastructure-deploy
 
 #   configure-infrastructure:
 #     docker:
