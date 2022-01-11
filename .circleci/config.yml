@@ -145,8 +145,10 @@ jobs:
           name: SSH or Git CLI client                 
           command: |            
               yum install -y openssh-client git
-      - restore_cache:
-          keys: [infrastructure-deploy]
+      - run:
+          name: Intall git 
+          command: |
+              yum install -y git
       - run:
           name: Ensure back-end infrastructure exists
           command: | 
