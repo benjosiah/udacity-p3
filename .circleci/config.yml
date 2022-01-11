@@ -139,8 +139,9 @@ jobs:
   deploy-infrastructure:
     docker:
       - image: amazon/aws-cli
+      - image: circleci/git:2.13.0
     steps:
-      - run: git clone
+      - checkout
       - run:
           name: Ensure back-end infrastructure exists
           command: | 
