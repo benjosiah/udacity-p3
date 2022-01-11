@@ -206,13 +206,18 @@ jobs:
           fingerprints:[71:ea:ee:43:3a:79:c3:ce:57:55:8d:84:26:c8:6d:eb]
       # attach workspace
       - attach_workspace:
-          path: .circleci/files/inventory
+          at: ~/
       # install ansible
       - run:
           name: Install dependencies
           command: |
             yum install -y ansible
-
+            yum install -y python
+            yum install -y python-pip
+            yum install -y nodejs
+            yum install -y npm
+            yum install -y pm2
+            apt-get update
       - run:
           name: Configure server
           command: |
