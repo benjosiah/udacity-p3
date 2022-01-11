@@ -171,8 +171,8 @@ jobs:
           paths:
             - project/.circleci/ansible/inventory.txt
       - run:
-          name: Add front-end ip to ansible inventory
-          command: | 
+          name: destroy-environment
+          command:
             destroy-environment:
               workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
 
