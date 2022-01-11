@@ -182,24 +182,52 @@ jobs:
           paths: [project/.circleci/ansible/inventory.txt]
           key: infrastructure-deploy
 
-#   configure-infrastructure:
-#     docker:
-#       # Docker image here that supports Ansible
-#     steps:
-#       # Checkout code from git
-#       # Add ssh keys with fingerprint
-#       # attach workspace
-#       - run:
-#           name: Install dependencies
-#           command: |
-#             # Your code here
-#             exit 1
-#       - run:
-#           name: Configure server
-#           command: |
-#             # Your code here
-#             exit 1
-#       # Here's where you will add some code to rollback on failure      
+  configure-infrastructure:
+    docker:
+      - image: amazon/aws-cli
+      - image: circleci/ansible:2.9.2
+    steps:
+      # Checkout code from git
+      - run:
+          name: SSH or Git CLI client
+          command: |
+            yum install -y openssh-client git
+      - run:
+          name: Intall git 
+          command: |
+            yum install -y git
+      - checkout
+      - run:
+          name: install tar and gzip
+          command: |
+            yum install -y tar gzip
+      # Add ssh keys with fingerprint
+      - add_ssh_keey:
+          fingerprints:[71:ea:ee:43:3a:79:c3:ce:57:55:8d:84:26:c8:6d:eb]
+      # attach workspace
+      - attach_workspace:
+          path: .circleci/files/inventory
+      # install ansible
+      - run:
+          name: Install dependencies
+          command: |
+            yum install -y ansible
+            # install python3
+            yum install -y python3
+            # install pip3
+            apt get update
+            #install nodejs-
+            apt install -y nodejs
+            #install npm
+            apt install -y npm
+            #install pm2
+            npm install -g pm2
+
+      - run:
+          name: Configure server
+          command: |
+            ansible-playbook -i .circleci/files/inventory .circleci/files/configure-server.yml
+      # Here's where you will add some code to rollback on failure      
 
 #   run-migrations:
 #     docker:
