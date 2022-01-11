@@ -211,8 +211,7 @@ jobs:
           command: |
             yum install -y python
             yum install -y python-pip
-            apt update
-            apt install ansible
+            yum install -y ansible
             yum install -y nodejs
             yum install -y npm
             yum install -y pm2
