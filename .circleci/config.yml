@@ -138,7 +138,7 @@ jobs:
 
   deploy-infrastructure:
     docker:
-      - image: circleci/awscli:1.18.0
+      - image: amazon/aws-cli
     steps:
       - checkout
       - run:
