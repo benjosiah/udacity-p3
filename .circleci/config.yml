@@ -140,6 +140,9 @@ jobs:
     docker:
       - image: amazon/aws-cli
     steps:
+      - add_ssh_keys:
+            fingerprints:
+              - "e2:4f:ff:1a:94:20:88:e0:08:e8:60:bc:24:41:4c:c0"
       - checkout
       - restore_cache:
           keys: [infrastructure-deploy]
