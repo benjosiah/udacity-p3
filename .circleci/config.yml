@@ -185,7 +185,6 @@ jobs:
   configure-infrastructure:
     docker:
       - image: amazon/aws-cli
-      - image: circleci/ansible:2.9.2
     steps:
       # Checkout code from git
       - run:
