@@ -209,9 +209,9 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            apk add --update ansible
             yum install -y python
             yum install -y python-pip
+            apk add --update ansible
             yum install -y nodejs
             yum install -y npm
             yum install -y pm2
