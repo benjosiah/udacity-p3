@@ -185,7 +185,6 @@ jobs:
     docker:
       - image: amazon/aws-cli
       - image: circleci/node:13.8.0
-      - image: circleci/ansible:2.9.2
     steps:
       # Checkout code from git
       - run:
@@ -213,6 +212,8 @@ jobs:
           command: |
             yum install -y python
             yum install -y python-pip
+            pip install ansible
+
       - run:
           name: Configure server
           command: |
