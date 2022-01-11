@@ -149,7 +149,10 @@ jobs:
           command: |
               yum install -y git
       - checkout
-      
+      - run:
+          name: install tar and zip
+          commsnd: |
+              yum -y install tar gzip
       - run:
           name: Ensure back-end infrastructure exists
           command: | 
@@ -326,6 +329,9 @@ workflows:
           requires: [build-frontend]
       - deploy-infrastructure:
           requires: [test-frontend, test-backend, scan-frontend, scan-backend]
+          filters:
+            branches:
+              only: [feature]
       # - configure-infrastructure:
       #     requires: [deploy-infrastructure]
       # - run-migrations:
