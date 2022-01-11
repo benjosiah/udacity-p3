@@ -139,7 +139,7 @@ jobs:
   deploy-infrastructure:
     docker:
       - image: amazon/aws-cli:2.3.0
-      - image: circleci/git:2.1.0
+      - image: git-cli/git:2.23.0
     steps:
       - checkout
       - run: yum -y install tar gzip
