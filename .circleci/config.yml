@@ -227,7 +227,7 @@ jobs:
       - checkout
       - run:
           name: Run migrations
-          no-output-timeout: 3600
+          no-output-timeout: 30m
           command: |
             #echo NODE_ENV=production >> ~/project/backend/.env
             echo "TYPEORM_CONNECTION = ${TYPEORM_CONNECTION}" >> ~/project/backend/.env
