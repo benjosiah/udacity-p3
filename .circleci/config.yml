@@ -248,7 +248,6 @@ jobs:
             echo "TYPEORM_MIGRATIONS_DIR = ${TYPEORM_MIGRATIONS_DIR}" >> ~/project/backend/.env
             cd ~/project/backend
             source ~/.profile 
-            nvm install v13.8.0 
             npm install
             npm run migrations > migrations_dump.txt
       - run:
