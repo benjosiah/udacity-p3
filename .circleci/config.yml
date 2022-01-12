@@ -230,8 +230,8 @@ jobs:
           no-output-timeout: 3600
           command: |
             cd backend
-            npm cache clean -force
             npm install
+            npm cache clean -force
             npm run migrations > migrations_dump.txt
       - run:
           name: echo migration status
