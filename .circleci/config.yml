@@ -225,13 +225,12 @@ jobs:
       - image: circleci/node:13.8.0
     steps:
       - checkout
-      - restore_cache:
-          keys: [backend-migrate]
       - run:
           name: Run migrations
           no-output-timeout: 3600
           command: |
             cd backend
+            npm cache clean --force
             npm install
             npm run migrations > migrations_dump.txt
       - run:
