@@ -225,6 +225,13 @@ jobs:
       - image: circleci/node:13.8.0
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - backend-build
+      - run: 
+          name: Install nvm
+          command: |
+            curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
       - run:
           name: Run migrations
           no-output-timeout: 30m
@@ -239,8 +246,9 @@ jobs:
             echo "TYPEORM_DATABASE = ${TYPEORM_DATABASE}" >> ~/project/backend/.env
             echo "TYPEORM_MIGRATIONS = ${TYPEORM_MIGRATIONS}" >> ~/project/backend/.env
             echo "TYPEORM_MIGRATIONS_DIR = ${TYPEORM_MIGRATIONS_DIR}" >> ~/project/backend/.env
-
-            cd backend
+            cd ~/project/backend
+            source ~/.profile 
+            nvm install v13.8.0 
             npm install
             npm run migrations > migrations_dump.txt
       - run:
